@@ -12,27 +12,56 @@ internal sealed class ServiceProvider
 		BuildServices(services);
 	}
 
+	private void BuildServiceFromDescriptor(ServiceDescriptor descriptor)
+	{
+		switch (descriptor.Lifetime)
+		{
+			case ServiceLifetime.Singleton:
+				CreateSingleton(descriptor);
+				return;
+
+			case ServiceLifetime.Transient:
+				CreateTransient(descriptor);
+				return;
+		}
+	}
+
 	private void BuildServices(ServiceCollection serviceCollection)
 	{
-		foreach (ServiceDescriptor descriptor in serviceCollection)
-		{
-			switch (descriptor.Lifetime)
-			{
-				case ServiceLifetime.Singleton:
-					object instance = CreateInstance(descriptor);
-					this._singletons[descriptor.ServiceType] = new Lazy<object>(instance);
-
-					continue;
-
-				case ServiceLifetime.Transient:
-					this._transients[descriptor.ServiceType] = () => CreateInstance(descriptor);
-					continue;
-			}
-		}
+		foreach (ServiceDescriptor descriptor in serviceCollection) { BuildServiceFromDescriptor(descriptor); }
 	}
 
 	private object CreateInstance(ServiceDescriptor descriptor) =>
 		Activator.CreateInstance(descriptor.ImplementationType, GetConstructorParameters(descriptor));
+
+	private void CreateSingleton(ServiceDescriptor descriptor)
+	{
+		if (descriptor.Implementation is not null)
+		{
+			this._singletons[descriptor.ServiceType] = new Lazy<object>(descriptor.Implementation);
+			return;
+		}
+
+		if (descriptor.ImplementationFactory is not null)
+		{
+			this._singletons[descriptor.ServiceType] = new Lazy<object>(() => descriptor.ImplementationFactory(this));
+			return;
+		}
+
+		object instance = CreateInstance(descriptor);
+		this._singletons[descriptor.ServiceType] = new Lazy<object>(instance);
+	}
+
+	private void CreateTransient(ServiceDescriptor descriptor)
+	{
+		if (descriptor.ImplementationFactory is not null)
+		{
+			this._transients[descriptor.ServiceType] = () => descriptor.ImplementationFactory(this);
+			return;
+		}
+
+		this._transients[descriptor.ServiceType] = () => CreateInstance(descriptor);
+	}
 
 	private object?[] GetConstructorParameters(ServiceDescriptor descriptor)
 	{
@@ -43,10 +72,7 @@ internal sealed class ServiceProvider
 
 		var dependencies = new List<object?>();
 
-		foreach (var param in parameters)
-		{
-			dependencies.Add(GetService(param.ParameterType));
-		}
+		foreach (ParameterInfo param in parameters) { dependencies.Add(GetService(param.ParameterType)); }
 
 		return dependencies.ToArray();
 	}
@@ -64,6 +90,5 @@ internal sealed class ServiceProvider
 		return null;
 	}
 
-	public T? GetService<T>() => (T?) GetService(typeof(T));
-
+	public T? GetService<T>() => (T?)GetService(typeof(T));
 }
