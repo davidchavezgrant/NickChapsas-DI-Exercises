@@ -3,6 +3,7 @@ using CustomCommandHandler.Weather;
 
 namespace CustomCommandHandler.Handlers;
 
+[CommandName("weather")]
 internal sealed class GetCurrentWeatherHandler : IHandler
 {
 	private readonly IConsoleWriter  _consoleWriter;

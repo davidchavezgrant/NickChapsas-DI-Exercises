@@ -2,17 +2,20 @@
 
 using CustomCommandHandler;
 using CustomCommandHandler.Console;
+using CustomCommandHandler.Handlers;
 using CustomCommandHandler.Time;
 using CustomCommandHandler.Weather;
+using FxResources.Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
 Console.WriteLine("Hello, World!");
 
 var services = new ServiceCollection();
 services.AddSingleton<IConsoleWriter, ConsoleWriter>();
-services.AddHttpClient();
 services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 services.AddSingleton<IWeatherService, OpenWeatherService>();
+services.AddSingleton<HandlerOrchestrator>();
+services.AddCommandHandlers(typeof(Program).Assembly);
 
 services.AddSingleton<Application>();
 
@@ -28,4 +31,4 @@ if (args.Length == 0)
 	};
 }
 
-await application.RunAsync();
+await application.RunAsync(args);

@@ -3,6 +3,7 @@ using CustomCommandHandler.Time;
 
 namespace CustomCommandHandler.Handlers;
 
+[CommandName("time")]
 internal sealed class GetCurrentTimeHandler : IHandler
 {
 	private readonly IConsoleWriter    _consoleWriter;
