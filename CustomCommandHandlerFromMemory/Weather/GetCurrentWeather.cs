@@ -5,14 +5,18 @@ namespace CustomCommandHandlerFromMemory.Weather;
 [CommandName("weather")]
 internal sealed class GetCurrentWeather : IHandler
 {
-	private readonly IConsoleWriter _consoleWriter;
-	public GetCurrentWeather(IConsoleWriter consoleWriter)
+	private readonly IConsoleWriter  _consoleWriter;
+	private readonly IWeatherService _weatherService;
+
+	public GetCurrentWeather(IConsoleWriter consoleWriter, IWeatherService weatherService)
 	{
-		this._consoleWriter = consoleWriter;
+		this._consoleWriter  = consoleWriter;
+		this._weatherService = weatherService;
 	}
 
 	public void Handle()
 	{
-		this._consoleWriter.WriteLine("The weather is great today thanks!");
+		var weather = this._weatherService.GetWeather("Boston");
+		this._consoleWriter.WriteLine(weather);
 	}
 }

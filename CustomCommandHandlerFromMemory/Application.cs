@@ -19,7 +19,7 @@ internal sealed class Application
 		{
 			args = new[]
 			{
-				"time"
+				"weather"
 			};
 		}
 
