@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCommandHandler", "Cus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCommandHandlerFromMemory", "CustomCommandHandlerFromMemory\CustomCommandHandlerFromMemory.csproj", "{D06293EA-467C-495B-A97E-A68AFDC6384F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGeneratorTEst", "SourceGeneratorTEst\SourceGeneratorTEst.csproj", "{B1CCC7B8-E51F-4479-AB4E-C5BC903E04DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{D06293EA-467C-495B-A97E-A68AFDC6384F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D06293EA-467C-495B-A97E-A68AFDC6384F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D06293EA-467C-495B-A97E-A68AFDC6384F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1CCC7B8-E51F-4479-AB4E-C5BC903E04DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1CCC7B8-E51F-4479-AB4E-C5BC903E04DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1CCC7B8-E51F-4479-AB4E-C5BC903E04DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1CCC7B8-E51F-4479-AB4E-C5BC903E04DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
