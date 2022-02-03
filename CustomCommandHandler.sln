@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGeneratorTEst", "Sour
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartUsingsTest", "SmartUsingsTest\SmartUsingsTest.csproj", "{D3091EFE-AADB-4112-90F2-326713892A66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIYDependencyInjection", "DIYDependencyInjection\DIYDependencyInjection.csproj", "{30471A6F-9FD3-4F0C-A257-D039B4745CBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{D3091EFE-AADB-4112-90F2-326713892A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3091EFE-AADB-4112-90F2-326713892A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3091EFE-AADB-4112-90F2-326713892A66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30471A6F-9FD3-4F0C-A257-D039B4745CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30471A6F-9FD3-4F0C-A257-D039B4745CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30471A6F-9FD3-4F0C-A257-D039B4745CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30471A6F-9FD3-4F0C-A257-D039B4745CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
