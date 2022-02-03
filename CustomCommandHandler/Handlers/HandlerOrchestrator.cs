@@ -11,10 +11,10 @@ public sealed class HandlerOrchestrator
 	public HandlerOrchestrator(IServiceScopeFactory serviceScopeFactory)
 	{
 		this._serviceScopeFactory = serviceScopeFactory;
-		RegisterCommandHandler();
+		RegisterCommandHandlers();
 	}
 
-	private void RegisterCommandHandler()
+	private void RegisterCommandHandlers()
 	{
 		var handlerTypes = HandlerExtensions.GetHandlerTypesForAssembly(typeof(IHandler).Assembly);
 		foreach (var handlerType in handlerTypes)

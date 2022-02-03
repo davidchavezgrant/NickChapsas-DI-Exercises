@@ -14,7 +14,6 @@ var services = new ServiceCollection();
 services.AddSingleton<IConsoleWriter, ConsoleWriter>();
 services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 services.AddSingleton<IWeatherService, OpenWeatherService>();
-services.AddSingleton<HandlerOrchestrator>();
 services.AddCommandHandlers(typeof(Program).Assembly);
 
 services.AddSingleton<Application>();

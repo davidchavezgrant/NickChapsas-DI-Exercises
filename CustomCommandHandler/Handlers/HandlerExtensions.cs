@@ -8,6 +8,8 @@ public static class HandlerExtensions
 {
 	public static void AddCommandHandlers (this IServiceCollection services, Assembly assembly)
 	{
+		services.TryAddSingleton<HandlerOrchestrator>();
+
 		var handlerTypes = GetHandlerTypesForAssembly(assembly);
 
 		foreach (var handlerType in handlerTypes)
